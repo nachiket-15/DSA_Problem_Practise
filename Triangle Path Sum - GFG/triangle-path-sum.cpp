@@ -6,6 +6,7 @@ using namespace std;
 class Solution {
   public:
     int minimizeSum(int n, vector<vector<int>>& triangle) {
+        //Memoization done on leetcode
         //By Tabulation as Memoization might give TLE
         vector<vector<int>>dp(n,vector<int>(n,0));
         
