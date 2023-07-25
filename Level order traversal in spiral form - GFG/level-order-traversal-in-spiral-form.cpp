@@ -125,13 +125,14 @@ struct Node
     }
 }; */
 
-
+#include<deque>
 //Function to return a list containing the level order traversal in spiral form.
 vector<int> findSpiral(Node *root)
 {
     vector<int>ans;
     //2 approaches : 1) Using two stacks 2) Using Dequeue
     
+    /*
     //Approach 1
     stack<Node*>s1;//s1 for right to left
     stack<Node*>s2;//s2 for left to right
@@ -166,6 +167,46 @@ vector<int> findSpiral(Node *root)
                 s1.push(temp->right);
             }
         }
+    }*/
+    
+    //Approach 2 
+    deque<Node*>dq;
+    dq.push_back(root);
+    bool reverse =true ;//True when right to left
+    while(!dq.empty()){
+        int n=dq.size();
+        
+        if(!reverse){
+            while(n--){
+                Node*temp=dq.front();
+                dq.pop_front();
+                ans.push_back(temp->data);
+                
+                if(temp->left){
+                    dq.push_back(temp->left);
+                }
+                if(temp->right){
+                    dq.push_back(temp->right);
+                }
+            }
+            reverse =!reverse;
+        }
+        else{
+            while(n--){
+                Node*temp=dq.back();
+                dq.pop_back();
+                ans.push_back(temp->data);
+                
+                if(temp->right){
+                    dq.push_front(temp->right);
+                }
+                if(temp->left){
+                    dq.push_front(temp->left);
+                }
+            }
+            reverse =!reverse;
+        }
+        
     }
     return ans;
 }
