@@ -35,7 +35,7 @@ class Solution{
     			if(arr[ind]<=target){
     				take=dp[ind-1][target-arr[ind]];
     			}
-    
+                //Perform Logical OR Operation of both 
     			dp[ind][target]=take || notTake;
     		}
     	}
