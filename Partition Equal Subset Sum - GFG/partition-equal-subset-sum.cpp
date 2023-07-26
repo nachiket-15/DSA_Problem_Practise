@@ -30,8 +30,8 @@ public:
     
         return dp[ind][target]=notTake||take;
     }
-    bool isSubsetSum(int n,int sum, int arr[]){
-        int k=sum;
+    bool isSubsetSum(int n,int k, int arr[]){
+        
         vector<vector<int>>dp(n,vector<int>(k+1,-1));
         return solve(n-1,k,arr,dp);
     }
@@ -44,7 +44,8 @@ public:
     	if(totalSum%2){
     		return false;
     	}
-    	return isSubsetSum(N,totalSum/2,arr);
+    	int target=totalSum/2;
+    	return isSubsetSum(N,target,arr);
     }
 };
 
