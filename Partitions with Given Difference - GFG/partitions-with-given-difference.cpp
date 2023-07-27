@@ -8,7 +8,7 @@ class Solution {
     int solve(int ind,vector<int>& arr,int target,vector<vector<int>>&dp)
     {
     	if(ind==0){
-    		if(target==0 && arr[0]==target){
+    		if(target==0 && arr[0]==0){
                 return 2;
             }
             if(target==0 || target==arr[0]){
