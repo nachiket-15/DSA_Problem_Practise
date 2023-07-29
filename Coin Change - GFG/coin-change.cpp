@@ -5,6 +5,26 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
+     //Memoization sol
+    /*int solve(int index,int target,vector<int>& coins,vector<vector<int>>&dp){
+        //Base index
+        if(index==0){
+            return (target%coins[0]==0);
+        }
+        //Memoization
+        if(dp[index][target]!=-1){
+            return dp[index][target];
+        }
+
+        int notTake=solve(index-1,target,coins,dp);
+        int take=0;
+        if(coins[index]<=target)
+        {
+            take=solve(index,target-coins[index],coins,dp);
+        }
+
+        return dp[index][target]=take+notTake;
+    }*/
     long long int count(int coins[], int N, int sum) {
 
         // code here.
