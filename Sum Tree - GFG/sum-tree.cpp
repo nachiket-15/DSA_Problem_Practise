@@ -99,6 +99,9 @@ class Solution
         if(!root){
             return 0;
         }
+        //Here recursion is so much imp in next step
+        //Other wise in large trees it may return only upward value ,which 
+        //will give wrong ans
         return root->data+sum(root->left)+sum(root->right);
     }
     bool isSumTree(Node* root)
