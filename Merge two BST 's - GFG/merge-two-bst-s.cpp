@@ -111,6 +111,7 @@ class Solution
     }
     vector<int> merge(Node *root1, Node *root2)
     {
+        //Done on own :))
        vector<int>in1;
        vector<int>in2;
        inorder(root1,in1);
