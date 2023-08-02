@@ -10,6 +10,8 @@ using namespace std;
 class Solution {
   public:
     int shortestDistance(int N, int M, vector<vector<int>> A, int X, int Y) {
+        //Simple bfs traversal yields ans
+        
         queue<pair<int,pair<int,int>>>q;
         //dist,(src_x,src_y)
         q.push({0,{0,0}});
