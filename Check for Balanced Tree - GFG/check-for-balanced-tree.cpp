@@ -110,6 +110,7 @@ class Solution{
     }
     bool isBalanced(Node *root)
     {
+        //Done on my own
         if(!root){
             return 1;
         }
