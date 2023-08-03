@@ -16,6 +16,7 @@ class Solution {
                 topoSort(v,adj,vis,st);
             }
         }
+        //Fill the stack with nodes once above loop is done while Backtracking
         st.push(start);
     }
   public:
@@ -40,10 +41,8 @@ class Solution {
             }
         }
         
-        vector<int>dist(N);
-        for(int i=0;i<N;i++){
-            dist[i]=1e9;
-        }
+        //initialize with 1e9(int max)
+        vector<int>dist(N,1e9);
         
         dist[0]=0;
         while(!st.empty()){
@@ -54,6 +53,7 @@ class Solution {
                 for(auto it:adj[node]){
                     int v=it.first;
                     int wt=it.second;
+                    //Relax the edges
                     if(dist[node]+wt<dist[v]){
                         dist[v]=dist[node]+wt;
                     }
