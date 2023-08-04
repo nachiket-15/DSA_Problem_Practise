@@ -33,6 +33,7 @@ public:
         return dp[index]=0;
     }
     int wordBreak(string s, vector<string> &wordDict) {
+        //Solution referred
         unordered_set<string>st(wordDict.begin(),wordDict.end());
         vector<int>dp(s.size()+1,-1);
         return solve(s,st,dp,0);
