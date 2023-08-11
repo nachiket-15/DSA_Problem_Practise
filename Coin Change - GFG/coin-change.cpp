@@ -6,32 +6,34 @@ using namespace std;
 class Solution {
   public:
      //Memoization sol
-    /*int solve(int index,int target,vector<int>& coins,vector<vector<int>>&dp){
+     // This solution not working here due to long long
+    long long int solve(int index,int target,int coins[],vector<vector<long long int>>&dp){
         //Base index
         if(index==0){
-            return (target%coins[0]==0);
+            if(target%coins[0]==0)return 1;
+            return 0;
         }
         //Memoization
         if(dp[index][target]!=-1){
             return dp[index][target];
         }
 
-        int notTake=solve(index-1,target,coins,dp);
-        int take=0;
+        long long int notTake=solve(index-1,target,coins,dp);
+        long long int take=0;
         if(coins[index]<=target)
         {
             take=solve(index,target-coins[index],coins,dp);
         }
 
         return dp[index][target]=take+notTake;
-    }*/
+    }
+    
     long long int count(int coins[], int N, int sum) {
 
-        // code here.
-        int n=N;
-        int amount=sum;
-        vector<vector<long long int>>dp(n,vector<long long int>(amount+1,0));
+        vector<vector<long long int>>dp(N,vector<long long int>(sum+1,-1));
+        return solve(N-1,sum,coins,dp);
         
+        /*
         //Base case
         for(int target=0;target<=amount;target++){
             dp[0][target]=(int)(target%coins[0]==0);
@@ -51,8 +53,11 @@ class Solution {
             }
         }
         return dp[n-1][amount];
+        */
     }
 };
+
+
 
 //{ Driver Code Starts.
 int main() {
