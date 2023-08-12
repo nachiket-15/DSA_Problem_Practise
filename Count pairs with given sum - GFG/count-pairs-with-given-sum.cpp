@@ -18,6 +18,7 @@ public:
             int diff=k-arr[i];
             
             if(diff>0){
+                // cout<<freq[diff];
                 count=count+freq[diff];
             }
             
