@@ -17,14 +17,11 @@ class Solution
         for(int i=0;i<n;i++){
             m[arr[i]]++;
         }
-        int ans=-1;
         int count=0;
         // In map i.first is value 
         // i.second is its frequency
         for(auto i:m){
             if(i.second>n/k){
-                
-                ans=i.first;
                 count++;
             }
         }
