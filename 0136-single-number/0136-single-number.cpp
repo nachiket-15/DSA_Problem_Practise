@@ -7,5 +7,12 @@ public:
             ans=ans^x;
         }
         return ans;
+
+        /*Another approach
+        int i=0;
+    while(i<arr.size()){
+        if(arr[i]==arr[i+1])i+=2;
+        else return arr[i];
+    }*/
     }
 };
