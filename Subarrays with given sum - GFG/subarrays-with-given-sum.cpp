@@ -10,7 +10,7 @@ class Solution
   public:
     int subArraySum(int nums[], int n, int k)
     {
-    	unorderedmap<int,int>map;
+    	unordered_map<int,int>map;
         map[0]=1;
 
         int preSum=0,cnt=0;
