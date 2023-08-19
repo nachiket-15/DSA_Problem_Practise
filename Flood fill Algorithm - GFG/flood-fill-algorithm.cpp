@@ -5,30 +5,29 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
 public:
-    void dfs(vector<vector<int>>&ans,vector<vector<int>>& image,int delrow[],int delcol[],int sr,int sc,int newColor,int initialColor){
+    void dfs(vector<vector<int>>&ans,vector<vector<int>>& image,int sr,int sc,int newColor,int initialColor){
         ans[sr][sc]=newColor;
         
         int n=image.size();
         int m=image[0].size();
+        
+        int delrow[]={-1,0,1,0};
+        int delcol[]={0,1,0,-1};
         
         for(int i=0;i<4;i++){
             int nrow=sr+delrow[i];
             int ncol=sc+delcol[i];
             
             if(nrow<n && ncol<m && nrow>=0 && ncol>=0 && ans[nrow][ncol]!=newColor &&image[nrow][ncol]==initialColor){
-                dfs(ans,image,delrow,delcol,nrow,ncol,newColor,initialColor);
+                dfs(ans,image,nrow,ncol,newColor,initialColor);
             }
         }
     }
     vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+        
         int initialColor=image[sr][sc];
-        
         vector<vector<int>>ans=image;
-        
-        int delrow[]={-1,0,1,0};
-        int delcol[]={0,1,0,-1};
-        
-        dfs(ans,image,delrow,delcol,sr,sc,newColor,initialColor);
+        dfs(ans,image,sr,sc,newColor,initialColor);
         
         return ans;
     }
