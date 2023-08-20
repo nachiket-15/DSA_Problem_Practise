@@ -47,6 +47,7 @@ public:
 	    return ans;
 	}
 	int count(int arr[], int n, int x) {
+	    //Done on own today
 	    int lb=lowerBound(arr,n,x);
 	    int ub=upperBound(arr,n,x);
 	    
