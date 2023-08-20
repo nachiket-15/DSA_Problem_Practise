@@ -159,7 +159,7 @@ int ht(Node*root,int a){
 }
 bool isCousins(Node *root, int a, int b)
 {
-   //
+   //Done on my own
    unordered_map<int,int>parent;
    make_parent(root,parent);
    
