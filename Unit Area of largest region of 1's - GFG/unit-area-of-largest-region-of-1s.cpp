@@ -39,7 +39,11 @@ class Solution
         
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
+                /*this step is much importatnt , earlier i was declaring 
+                count outside so was causing error, 
+                we need everytime make count 0 before dfs call*/
                 int count=0;
+                
                 if(grid[i][j]==1){
                     dfs(i,j,count,vis,grid);
                     res=max(res,count);
