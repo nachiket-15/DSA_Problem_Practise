@@ -22,6 +22,7 @@ class Solution
             auto it=pq.top();
             int wt=it.first;
             int node=it.second;
+            
             pq.pop();
             
             if(vis[node]==1)continue;
