@@ -9,6 +9,7 @@ class Solution
 	//Function to find sum of weights of edges of the Minimum Spanning Tree.
     int spanningTree(int V, vector<vector<int>> adj[])
     {
+        //Prims algorithm
         vector<int>vis(V,0);
         //create a priority queue - min heap
         priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
