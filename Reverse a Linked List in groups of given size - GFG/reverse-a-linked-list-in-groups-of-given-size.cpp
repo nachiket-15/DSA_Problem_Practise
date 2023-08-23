@@ -76,11 +76,11 @@ class Solution
             head->next=reverse(next,k);
         }
         
-        
         //Return head of reversed list
         return prev;
     }
 };
+
 
 
 //{ Driver Code Starts.
