@@ -46,6 +46,11 @@ public:
 	            }
 	        }
 	    }
+	    //the flag variable is used to control the process of searching 
+	    //for the entire word in different directions from the current 
+	    //starting cell. If the word is found in any direction, 
+	    //the flag is set to true, and the loop stops checking other 
+	    //directions for the same starting cell(as we need only starting idx in ans)
 	    sort(ans.begin(),ans.end());   
 	    return ans;
 	}
