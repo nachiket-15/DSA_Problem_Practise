@@ -120,8 +120,10 @@ class Solution
             Node*node=it.first;
             int line=it.second;
             
+            //Tye line corresponding data nasel tr ch takne , nahitr nahi takaycha data map mdhe
             if(mpp.find(line)==mpp.end())
                 mpp[line]=node->data;
+                
             //map.find() is built in func
             //returns an iterator or constant iterator that refers to position of key
             //if key is not present it returns an iterator that refers to map.end()
@@ -130,6 +132,7 @@ class Solution
             if(node->right)
                 q.push({node->right,line+1});
         }
+        
         for(auto it:mpp){
             ans.push_back(it.second);
         }
@@ -137,6 +140,7 @@ class Solution
     }
 
 };
+
 
 
 
