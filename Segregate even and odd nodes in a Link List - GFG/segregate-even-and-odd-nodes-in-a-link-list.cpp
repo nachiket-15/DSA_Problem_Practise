@@ -42,7 +42,7 @@ struct Node
 class Solution{
 public:
     Node* divide(int N, Node *head){
-        
+        //Solved on my own
         Node*even=new Node(0);
         Node*p1=even;
         Node*odd=new Node(0);
