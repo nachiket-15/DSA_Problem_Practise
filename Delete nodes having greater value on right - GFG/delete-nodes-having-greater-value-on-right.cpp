@@ -51,12 +51,14 @@ class Solution
         Node*temp=head;
         
         while(temp->next){
-            
-            if(temp->data < temp->next->data){
+            if(temp->next->data > temp->data){
                 temp->data=temp->next->data;
                 temp->next=temp->next->next;
+                //In this step we again sent temp to 
+                //head(we stated temp to again start to iterate 
+                //from start of linkedlist so that it checks 
+                //and verifies condition again)
                 temp=head;
-                
             }else{
                 temp=temp->next;
             }
