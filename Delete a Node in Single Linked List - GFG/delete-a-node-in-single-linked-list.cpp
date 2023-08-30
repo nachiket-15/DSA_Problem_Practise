@@ -84,18 +84,10 @@ struct Node
 */
 
 /*You are required to complete below method*/
-int countNodes(Node*head){
-    Node*temp=head;
-    int cnt=0;
-    while(temp){
-        cnt++;
-        temp=temp->next;
-    }
-    return cnt;
-}
+
 Node* deleteNode(Node *head,int x)
 {
-    int count=countNodes(head);
+    //done on my own
     int curr_cnt=1;
     
     if(x==1){
