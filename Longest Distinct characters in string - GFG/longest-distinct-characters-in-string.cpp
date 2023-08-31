@@ -30,6 +30,7 @@ int longestSubstrDistinctChars (string S)
     
     while(right<end){
         if(cmap[S[right]]>=1){
+            //reducing window from front
             cmap[S[left]]--;
             left++;
             continue;
