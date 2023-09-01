@@ -24,6 +24,7 @@ class Solution
         }
         return ans;
     }
+    
     vector<int> findPrevSmaller(long long arr[], int n) 
     { 
         vector<int>ans(n);
@@ -46,21 +47,23 @@ class Solution
     //Function to find largest rectangular area possible in a given histogram.
     long long getMaxArea(long long heights[], int n)
     {
-
         //We need to create 2 arrays , one will store indices of 
         //prev smaller elements & another will store indices of next smaller elements
-
         vector<int>prev(n);
         vector<int>next(n);
         prev=findPrevSmaller(heights,n);
         next=findNextSmaller(heights,n);
 
-        //Now iterate for each index element , find for max area from max length & breadth
+        //Now iterate for each index element , 
+        //find for max area from max length & breadth
         long long int area=INT_MIN;
         
         for(int i=0;i<n;i++){
             long long int l=heights[i];
-            //One condition needs to be handled , when entire array does not not have next smaller element , then width will have whole array from that position
+            //One condition needs to be handled ,
+            //when entire array does not not have 
+            //next smaller element , 
+            //then width will have whole array from that position
             if(next[i]==-1){
                 next[i]=n;
             }
@@ -72,6 +75,7 @@ class Solution
         return area;
     }
 };
+
 
 
 //{ Driver Code Starts.
