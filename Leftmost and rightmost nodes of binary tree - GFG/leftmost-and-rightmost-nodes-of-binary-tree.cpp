@@ -132,14 +132,12 @@ struct Node
 */
 void printCorner(Node *root)
 {
-    //We will store nodes here and print in end
-    vector<int>ans;
-    
     queue<Node*>q;
     q.push(root);
     
     while(!q.empty()){
         int size=q.size();
+        //We store level order traversal in temp , but print only required ones
         vector<int>temp;
         for(int i=0;i<size;i++){
             Node*p=q.front();
