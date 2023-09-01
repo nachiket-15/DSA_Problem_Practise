@@ -49,10 +49,8 @@ class Solution
     {
         //We need to create 2 arrays , one will store indices of 
         //prev smaller elements & another will store indices of next smaller elements
-        vector<int>prev(n);
-        vector<int>next(n);
-        prev=findPrevSmaller(heights,n);
-        next=findNextSmaller(heights,n);
+        vector<int>prev=findPrevSmaller(heights,n);
+        vector<int>next=findNextSmaller(heights,n);
 
         //Now iterate for each index element , 
         //find for max area from max length & breadth
@@ -63,7 +61,7 @@ class Solution
             //One condition needs to be handled ,
             //when entire array does not not have 
             //next smaller element , 
-            //then width will have whole array from that position
+            //then width will be whole array size from that position
             if(next[i]==-1){
                 next[i]=n;
             }
