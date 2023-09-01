@@ -49,7 +49,9 @@ class twoStacks
         if(top1==-1){
             return -1;
         }
-        return arr[top1--];
+        int val=arr[top1];
+        top1=top1-1;
+        return val;
     }
     
     //Function to remove an element from top of the stack2.
@@ -58,7 +60,9 @@ class twoStacks
        if(top2==size){
             return -1;
         }
-        return arr[top2++];
+        int val=arr[top2];
+        top2=top2+1;
+        return val;
     }
 };
 
