@@ -9,6 +9,7 @@
 #define ll long long
 long long int floorSqrt(long long int x) 
 {
+    //Today done on own
       ll low=0;
       ll high=x;
       ll ans=0;
