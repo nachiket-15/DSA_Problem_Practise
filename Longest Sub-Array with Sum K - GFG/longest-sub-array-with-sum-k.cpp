@@ -8,51 +8,28 @@ class Solution{
     public:
     int lenOfLongSubarr(int A[],  int N, int K) 
     { 
-        /*
-        Solution 1 - TC = O(N^2) 
-        int maxLen=0;
-        for(int i=0;i<N;i++){
-            int sum=0;
-            for(int j=i;j<N;j++){
-                sum+=A[j];
-                
-                if(sum==K){
-                    maxLen=max(maxLen,j-i+1);
-                }
-            }
-        }
-        
-        return maxLen;
-        */
-        
-        //Solution 2 
-        unordered_map<int,int>um;//<sum,index>
-        int maxLen=0;
         int sum=0;
+        int len=0;
+        unordered_map<int,int>mp;//sum,len
         
         for(int i=0;i<N;i++){
             sum+=A[i];
-            
             if(sum==K){
-                maxLen=i+1;
+                len=i+1;
             }
-            
-            if(um.find(sum)==um.end()){
-                um[sum]=i;
+            if(mp.find(sum)==mp.end()){
+                mp[sum]=i;
             }
-            
-            if(um.find(sum-K)!=um.end()){
-                if(maxLen<(i-um[sum-K])){
-                    maxLen=i-um[sum-K];
+            if(mp.find(sum-K)!=mp.end()){
+                if(len<i-mp[sum-K]){
+                    len=i-mp[sum-K];
                 }
             }
         }
-        return maxLen;
-        
+        return len;
     } 
 
 };
-
 
 //{ Driver Code Starts.
 
