@@ -8,9 +8,10 @@ class Solution{
     public:
     int lenOfLongSubarr(int A[],  int N, int K) 
     { 
+        //After 4 months i was able to do this on my own 
         int sum=0;
         int len=0;
-        unordered_map<int,int>mp;//sum,len
+        unordered_map<int,int>mp;//sum,index
         
         for(int i=0;i<N;i++){
             sum+=A[i];
