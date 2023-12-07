@@ -6,9 +6,7 @@ using namespace std;
 class Solution
 {
 public:
-    int cnt_distinct_elements(int arr[],int n){
-        
-    }
+    
     
     int countDistinctSubarray(int arr[], int n)
     {
@@ -17,7 +15,6 @@ public:
         set<int>st;
         for(int i=0;i<n;i++)
             st.insert(arr[i]);
-            
             
         //Get the number of distinct elements 
         int k=st.size();
