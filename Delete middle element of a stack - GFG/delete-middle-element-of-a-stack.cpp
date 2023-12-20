@@ -13,25 +13,19 @@ class Solution
     //Function to delete middle element of a stack.
     void deleteMid(stack<int>&s, int sizeOfStack)
     {
-        vector<int>v;
+        int no_of_remaining_elements=sizeOfStack-s.size();
         
-        for(int i=0;i<sizeOfStack;i++){
-            v.push_back(s.top());
+        if(no_of_remaining_elements==(sizeOfStack/2))
+        {
             s.pop();
+            return;
         }
-        
-        int n=v.size()/2 ;
-        // cout<<v[n]<<" ";
-        v.erase(v.begin()+n);
-        
-        // for(int j=0;j<v.size();j++)cout<<v[j]<<" ";
-        for(int j=v.size()-1 ;j>=0;j--){
-            s.push(v[j]);
-        }
-        
+        int n=s.top();
+        s.pop();
+        deleteMid(s,sizeOfStack);
+        s.push(n);
     }
 };
-
 
 //{ Driver Code Starts.
 int main() {
