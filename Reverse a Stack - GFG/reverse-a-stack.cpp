@@ -19,8 +19,8 @@ public:
         int element=St.top();
         St.pop();
         insertAtBottom(n,St);
+        //While backtracking 
         St.push(element);
-        
     }
     void Reverse(stack<int> &St){
         if(St.empty()){
@@ -31,6 +31,7 @@ public:
         St.pop();
         
         Reverse(St);
+        
         insertAtBottom(n,St);
     }
 };
