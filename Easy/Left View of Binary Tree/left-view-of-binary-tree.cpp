@@ -140,9 +140,9 @@ vector<int> leftView(Node *root)
    q.push(root);
    
    while(!q.empty()){
-       int n=q.size();
+       int ct=q.size();
        bool flag=true;
-       while(n--){
+       while(ct--){
            Node*temp=q.front();
            q.pop();
            if(flag==true){
