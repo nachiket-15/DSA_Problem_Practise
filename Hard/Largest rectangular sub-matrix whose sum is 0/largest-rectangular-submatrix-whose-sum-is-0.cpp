@@ -7,78 +7,81 @@ using namespace std;
 // } Driver Code Ends
 //User function Template for C++
 
-class Solution{
-  public:
-    vector<vector<int>> sumZeroMatrix(vector<vector<int>> a){
-        //Get the sizes of matrices
-        
-        int m=a.size();//No of rows
-        int n=a[0].size();//No of columns
-        
-        int left=0,right=0,up=0,down=0;
-        
-        //Iterate a loop over all columns
-        for(int i=0;i<n;i++)
-        {
-            //Create an array of size equal to no of rows
-            vector<int>arr(m,0);
-            
-            //Iterate from current column to last
-            for(int j=i;j<n;j++)
-            {
-                //In it , iterate on all rows 
-                for(int k=0;k<m;k++)
-                {
-                    arr[k]+=a[k][j];
-                    //That is sum of row elements till 
+
+class Solution {
+public:
+    static vector<vector<int>> sumZeroMatrix(vector<vector<int>>& matrix) {
+        int numRows = matrix.size();
+        int numCols = matrix[0].size();
+        int startCol = 0, endCol = 0, startRow = 0, endRow = 0, maxArea = -1001;
+
+        for (int i = 0; i < numCols; i++) {
+            vector<int> colSum(numRows, 0);
+            for (int j = i; j < numCols; j++) {
+                for (int k = 0; k < numRows; k++) {
+                    colSum[k] += matrix[k][j];
                 }
-                
-                //Create an unordered map 
-                unordered_map<long long ,int>map;
-                map[0]=-1;
-                
-                int l=0,r=0;
-                
-                long long sum=0;
-                
-                //
-                for(int k=0;k<m;k++)
-                {
-                    sum+=arr[k];
-                    if(map.count(sum)){
-                        if((k-map[sum]) > (r-l))
-                        {
-                            l=map[sum]+1;
-                            r=k+1;
-                        }
-                    }
-                    else{
-                        map[sum]=k;
-                    }
+
+                int startIndices[] = {0};
+                int endIndices[] = {0};
+                int len = maxLength(colSum, startIndices, endIndices);
+
+                int area = (endIndices[0] - startIndices[0] + 1) * (j - i + 1);
+
+                if (len > 0 && area > maxArea) {
+                    startRow = startIndices[0];
+                    endRow = endIndices[0];
+                    startCol = i;
+                    endCol = j;
+                    maxArea = area;
                 }
-                if((j-i+1)*(r-l) > (right-left)*(down-up)){
-                  up = l;
-                  down = r;
-                  left = i;
-                  right = j+1;
-              }
-                
             }
         }
-        
-         vector<vector<int>> result;
-      
-      for(int i=up; i<down; i++){
-          vector<int> arr;
-          
-          for(int j=left; j<right; j++){
-              arr.push_back(a[i][j]);
-          }
-          
-          result.push_back(arr);
-      }
-      
-      return result;
+
+        vector<vector<int>> resultList;
+        for (int i = startRow; i <= endRow; i++) {
+            vector<int> rowList;
+            for (int j = startCol; j <= endCol; j++) {
+                rowList.push_back(matrix[i][j]);
+            }
+            resultList.push_back(rowList);
+        }
+        return resultList;
+    }
+
+private:
+    static int maxLength(vector<int>& array, int startIndices[], int endIndices[]) {
+        int sum = 0, maxLength = 0;
+        unordered_map<int, int> sumIndexMap;
+
+        for (int i = 0; i < array.size(); i++) {
+            sum += array[i];
+
+            if (array[i] == 0 && maxLength == 0) {
+                startIndices[0] = i;
+                endIndices[0] = i;
+                maxLength = 1;
+            }
+            if (sum == 0) {
+                if (maxLength < i + 1) {
+                    startIndices[0] = 0;
+                    endIndices[0] = i;
+                }
+                maxLength = i + 1;
+            }
+            if (sumIndexMap.find(sum) != sumIndexMap.end()) {
+                int prevLength = maxLength;
+                maxLength = max(maxLength, i - sumIndexMap[sum]);
+
+                if (maxLength > prevLength) {
+                    endIndices[0] = i;
+                    startIndices[0] = sumIndexMap[sum] + 1;
+                }
+            } else {
+                sumIndexMap[sum] = i;
+            }
+        }
+        return maxLength;
     }
 };
 
