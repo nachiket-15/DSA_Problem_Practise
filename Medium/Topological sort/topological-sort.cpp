@@ -5,55 +5,47 @@ using namespace std;
 // } Driver Code Ends
 class Solution
 {
-    private:
-    void solve(int node,stack<int>&st,vector<bool>&vis,vector<int> adj[]){
-        //Mark this node as visited
-        vis[node]=1;
-        // Call dfs for adjacent nodes 
-        for(auto neighbour: adj[node]){
-            if(!vis[neighbour]){
-                solve(neighbour,st,vis,adj);
-            }
-        }
-        // When dfs call reaches a node having 0 outdegree 
-        // Then push elements into stack
-        
-        //Or push into stack when all its adjacent elements are already present
-        st.push(node);
-    }
 	public:
+	//Approach 2 - BFS (Kahns Algorithm)
 	//Function to return list containing vertices in Topological order. 
 	vector<int> topoSort(int V, vector<int> adj[]) 
 	{
-	    //Make a visited array
-	    vector<bool>vis(V,0);
-	    //Create a stack to store elements 
-	    stack<int>st;
-	    //Create a vector array to return as ans
 	    vector<int>ans;
-	    
-	    //Traverse the elements
+	    //Form the indegree array
+	    int indegree[V]={0};
+	    //Fill the indegree array
 	    for(int i=0;i<V;i++){
-	        //If an element is unvisited , call solve function
-	        //Mark node as visited and push node's neighbour in stack
-	        //If they are unvisited by rec call
-	        
-	        //Pushing is done onto stack if all its neighbours are already pushed
-	        if(!vis[i]){
-	            solve(i,st,vis,adj);
+	        for(auto it:adj[i]){
+	            indegree[it]++;
 	        }
 	    }
 	    
-	    //Put stack elements into ans vector and return it 
-	    while(!st.empty()){
-	        int data=st.top();
-	        st.pop();
-	        ans.push_back(data);
+	    queue<int>q;
+	    //Push the elements into queue with indegree as 0
+	    for(int i=0;i<V;i++){
+	        if(indegree[i]==0){
+	            q.push(i);
+	        }
 	    }
+	    
+	    //Have bfs traversal
+	    while(!q.empty()){
+	        int node=q.front();
+	        q.pop();
+	        ans.push_back(node);
+	        
+	        for(auto it:adj[node]){
+	            indegree[it]--;
+	            if(indegree[it]==0){
+	                q.push(it);
+	            }
+	        }
+	    }
+	    
 	    return ans;
+	    
 	}
 };
-
 
 
 //{ Driver Code Starts.
