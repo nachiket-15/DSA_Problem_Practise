@@ -10,7 +10,7 @@ class Solution
   public:
     vector<int> findOrder(int n, int m, vector<vector<int>> prerequisites) 
     {
-	    //Form a adjacency list
+	    //Form a adjacency list ( this is array of vectors )
 	    vector<int>adj[n];
 	    
 	    //See and form according to given condition in prob statement
@@ -19,8 +19,12 @@ class Solution
 	    }
 	    
 	    vector<int>ans;
+	    
+	    
 	    //Form the indegree array
 	    int indegree[n]={0};
+	    
+	    
 	    //Fill the indegree array
 	    for(int i=0;i<n;i++){
 	        //For those elements in adj list which are on right side , 
@@ -31,6 +35,7 @@ class Solution
 	            indegree[it]++;
 	        }
 	    }
+	    
 	    
 	    queue<int>q;
 	    //Push the elements into queue with indegree as 0
@@ -73,6 +78,7 @@ class Solution
 	    return {};
     }
 };
+
 
 
 
