@@ -9,27 +9,33 @@ using namespace std;
 class Solution{
 public:	
 	// calculate the maximum sum with out adjacent
-	int f(int index,vector<int>&nums,vector<int>&dp){
-    if(index==0)return nums[0];
-
-    if(dp[index]!=-1)return dp[index];
-    
-    int pick=nums[index]+f(index-2,nums,dp);
-    int notpick=0+f(index-1,nums,dp);
-
-    return dp[index]=max(pick,notpick);
-}
-int maximumNonAdjacentSum(vector<int> &nums){
-    //asked in arcesium online assesment
-    int n=nums.size();
-    vector<int>dp(n,-1);
-    return f(n-1,nums,dp);
-}
-	int findMaxSum(vector<int>&arr, int n) {
-	    // code here
-	    return maximumNonAdjacentSum(arr);
+	int solve(int*arr,int idx,vector<int>&dp)
+	{
+	    if(idx<0){
+	        return 0;
+	    }
+	    if(idx==0){
+	        return arr[idx];
+	    }
+	    //Memoization
+	    if(dp[idx]!=-1){
+	        return dp[idx];
+	    }
+	    
+	    int pick=arr[idx]+solve(arr,idx-2,dp);
+	    int nonPick=solve(arr,idx-1,dp);
+	    
+	    return dp[idx]=max(pick,nonPick);
+	}
+	int findMaxSum(int *arr, int n) 
+	{
+	    //This problem uses pick/nonpick strategy
+	    
+	    vector<int>dp(n,-1);
+	    return solve(arr,n-1,dp);
 	}
 };
+
 
 //{ Driver Code Starts.
 
@@ -39,7 +45,7 @@ int main() {
     while (t--) {
         int n;
         cin >> n;
-        vector<int>arr(n);
+        int arr[n];
         for (int i = 0; i < n; i++) {
             cin >> arr[i];
         }
