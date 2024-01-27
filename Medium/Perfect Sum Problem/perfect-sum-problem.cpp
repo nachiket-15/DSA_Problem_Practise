@@ -22,15 +22,16 @@ class Solution{
     	}
     	return dp[ind][target]=(Take+notTake)%(int)(1e9+7);
     }
+    
 	int perfectSum(int arr[], int n, int sum)
 	{
-        // Your code goes here
         int k=sum;
         vector<vector<int>>dp(n,vector<int>(k+1,-1));
     	return solve(n-1,arr,k,dp);
 	}
 	  
 };
+
 
 
 
