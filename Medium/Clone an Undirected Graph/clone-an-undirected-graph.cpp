@@ -109,7 +109,8 @@ bool compare(Node* prev, Node* new_node, unordered_set<Node*>& prev_vis, unorder
 class Solution {
 public:
     Node* cloneGraph(Node* node) {
-        if (!node) {
+        
+        if (node==NULL) {
             return nullptr;
         }
 
@@ -120,7 +121,8 @@ public:
 
 private:
     Node* cloneHelper(Node* originalNode, unordered_map<Node*, Node*>& visited) {
-        if (!originalNode) {
+        
+        if (originalNode==NULL) {
             return nullptr;
         }
 
@@ -136,7 +138,8 @@ private:
         visited[originalNode] = clonedNode;
 
         // Recursively clone the neighbors of the current node
-        for (Node* neighbor : originalNode->neighbors) {
+        for (Node* neighbor : originalNode->neighbors) 
+        {
             clonedNode->neighbors.push_back(cloneHelper(neighbor, visited));
         }
 
