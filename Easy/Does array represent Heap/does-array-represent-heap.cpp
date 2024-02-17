@@ -6,20 +6,20 @@ using namespace std;
 
 class Solution{
     public:
-    bool isMaxHeap(int a[], int n)
+    bool isMaxHeap(int arr[], int n)
     {
-        //You have to iterate till first non-leaf element in array
-        for(int i=0;i<=(n/2-1);i++)
+        for(int i=0;i<n;i++)
         {
-            int parentNode=a[i];
-            int leftChild=a[2*i+1];
-            int rightChild=a[2*i+2];
+            int parent=arr[i];
+            int leftChild=arr[i*2+1];
+            int rightChild=arr[i*2+2];
             
-            if(parentNode<leftChild || parentNode<rightChild)
+            if(parent < leftChild || parent < rightChild)
             {
                 return false;
             }
         }
+        
         return true;
     }
 };
