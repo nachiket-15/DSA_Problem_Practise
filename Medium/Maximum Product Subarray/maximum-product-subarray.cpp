@@ -23,12 +23,14 @@ public:
 	            }
 	        }
 	    }
+	    
 	    long long ans=0;
 	    for(auto n:maxProduct)if(n>ans)ans=n;
 	    
 	    if(maxProduct.size()==1)return maxProduct[0];
 	    
-	    return ans;*/
+	    return ans;
+	    */
 	// Function to find maximum product subarray
 	long long maxProduct(vector<int> arr, int n) {
 	    //Efficient approach
