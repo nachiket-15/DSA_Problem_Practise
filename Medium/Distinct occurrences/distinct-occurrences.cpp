@@ -11,15 +11,19 @@ class Solution
     //Memoization solution
     int solve(int i,int j,string &s,string &t,vector<vector<int>>&dp){
         //Base case : If ref words iterator finishes
+        
+        //choti string sampli
         if(j<0)return 1;
+        //mothi string sampli
         if(i<0)return 0;
 
         if(dp[i][j]!=-1)return dp[i][j];
 
         if(s[i]==t[j]){
+            //equal astil tr donhi possibility consider kara
             return dp[i][j]=solve(i-1,j-1,s,t,dp)+solve(i-1,j,s,t,dp);
         }
-
+        //equal nastil mothi string vrti iterate karun pudhe ja (i.e.mage)
         return dp[i][j]=solve(i-1,j,s,t,dp);
     }
     
@@ -50,6 +54,7 @@ class Solution
     }
 };
  
+
 
 
 
