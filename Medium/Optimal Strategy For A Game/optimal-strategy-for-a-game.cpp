@@ -7,28 +7,24 @@ using namespace std;
 //Function to find the maximum possible amount of money we can win.
 class Solution{
     public:
-    int solve(int arr[],int start,int end,vector<vector<int>>&dp)
-    {
-        if(start==end)return arr[start];
-        if(start>end)return 0;
-        
-        if(dp[start][end]!=-1)
-        {
-            return dp[start][end];
-        }
-        //Minimax strategy is the optimal for game 
-        //You take max and let opponent take min so that we win
-        int choseLeft=arr[start]+min(solve(arr,start+1,end-1,dp),solve(arr,start+2,end,dp));
-        int choseRight=arr[end]+min(solve(arr,start+1,end-1,dp),solve(arr,start,end-2,dp));
-        
-        return dp[start][end]=max(choseLeft,choseRight);
-    }
-    long long maximumAmount(int arr[], int n){
-        int start=0;
-        int end=n-1;
-        vector<vector<int>>dp(n,vector<int>(n,-1));
-        return solve(arr,start,end,dp);
-    }
+    long long solve(int start, int end, int arr[], vector<vector<long long>>& dp) {
+    if (end < start) return 0;
+    
+    if (dp[start][end] != -1) return dp[start][end];
+    
+    long long left = 1e9, right = 1e9;
+    
+    left = arr[start] + min(solve(start + 2, end, arr, dp), solve(start + 1, end - 1, arr, dp));
+    right = arr[end] + min(solve(start + 1, end - 1, arr, dp), solve(start, end - 2, arr, dp));
+    
+    return dp[start][end] = max(left, right);
+}
+
+long long maximumAmount(int n, int arr[]) {
+    vector<vector<long long>> dp(n, vector<long long>(n, -1));
+    return solve(0, n - 1, arr, dp);
+}
+
 };
 
 //{ Driver Code Starts.
@@ -45,7 +41,7 @@ int main()
 		for(int i=0;i<n;i++)
 		cin>>a[i];
 		Solution ob;
-		cout<< ob.maximumAmount(a,n)<<endl;
+		cout<< ob.maximumAmount(n,a)<<endl;
 	}
 	return 0;
 }
