@@ -1,36 +1,26 @@
 //{ Driver Code Starts
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-#define MAX_HEIGHT 100000
 
-// Tree Node
+
 struct Node
 {
     int data;
-    Node* left;
-    Node* right;
+    struct Node *left;
+    struct Node *right;
+
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
 };
-
-// Utility function to create a new Tree Node
-Node* newNode(int val)
-{
-    Node* temp = new Node;
-    temp->data = val;
-    temp->left = NULL;
-    temp->right = NULL;
-
-    return temp;
-}
-
-
-vector<vector<int>> Paths(Node *root);
 
 // Function to Build Tree
 Node* buildTree(string str)
 {
     // Corner Case
     if(str.length() == 0 || str[0] == 'N')
-        return NULL;
+            return NULL;
 
     // Creating vector of strings from input
     // string after spliting by space
@@ -41,7 +31,7 @@ Node* buildTree(string str)
         ip.push_back(str);
 
     // Create the root of the tree
-    Node* root = newNode(stoi(ip[0]));
+    Node *root = new Node(stoi(ip[0]));
 
     // Push the root to the queue
     queue<Node*> queue;
@@ -61,8 +51,8 @@ Node* buildTree(string str)
         // If the left child is not null
         if(currVal != "N") {
 
-            // Create the left child for the current node
-            currNode->left = newNode(stoi(currVal));
+            // Create the left child for the current Node
+            currNode->left = new Node(stoi(currVal));
 
             // Push it to the queue
             queue.push(currNode->left);
@@ -78,7 +68,7 @@ Node* buildTree(string str)
         if(currVal != "N") {
 
             // Create the right child for the current node
-            currNode->right = newNode(stoi(currVal));
+            currNode->right = new Node(stoi(currVal));
 
             // Push it to the queue
             queue.push(currNode->right);
@@ -89,68 +79,112 @@ Node* buildTree(string str)
     return root;
 }
 
-
-
-int main() {
-    int t;
-    string tc;
-    getline(cin, tc);
-    t=stoi(tc);
-    while(t--)
-    {
-        string s ,ch;
-        getline(cin, s);
-        Node* root = buildTree(s);
-
-        vector<vector<int>> paths = Paths(root);
-        for(int i = 0;i<paths.size();i++){
-            for(int j = 0;j<paths[i].size();j++){
-                cout<<paths[i][j]<<" ";
-            }
-            cout<<"#";
-        } 
-        cout<<"\n";
-    }
-    return 0;
+Node* inputTree(){
+    string treeString;
+    getline(cin,treeString);
+    Node* root = buildTree(treeString);
+    return root;
+}
+void inorder(Node *root)
+{
+    if (root == NULL)
+       return;
+    inorder(root->left);
+    cout << root->data << " ";
+    inorder(root->right);
 }
 
+
+class Matrix
+{
+public:
+    template <class T>
+    static void input(vector<vector<T>> &A,int n,int m)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < m; j++)
+            {
+                scanf("%d ",&A[i][j]);
+            }
+        }
+    }
+
+    template <class T>
+    static void print(vector<vector<T>> &A)
+    {
+        for (int i = 0; i < A.size(); i++)
+        {
+            for (int j = 0; j < A[i].size(); j++)
+            {
+                cout << A[i][j] << " ";
+            }
+            cout << endl;
+        }
+    }
+};
 
 
 // } Driver Code Ends
+/*
 
-
-
-
-/* Structure of Node
+Definition for Binary Tree Node
 struct Node
 {
     int data;
-    Node* left;
-    Node* right;
-};*/
+    struct Node* left;
+    struct Node* right;
 
-/* The function should print all the paths from root
- to leaf nodes of the binary tree */
- 
- void helper(Node*root,vector<int>arr,vector<vector<int>>&ans){
-    if(root==NULL)
-        return;
-    arr.push_back(root->data);
-    if(root->left==NULL && root->right==NULL){
-        ans.push_back(arr);
-        return;
+    Node(int x){
+        data = x;
+        left = right = NULL;
     }
-    helper(root->left,arr,ans);
-    helper(root->right,arr,ans);
- }
+};
+*/
 
-vector<vector<int>> Paths(Node* root)
-{
-    vector<vector<int>>ans;
-    if(root==NULL)
-        return ans;
+class Solution {
+  public:
+    void helper(Node*root,vector<int>arr,vector<vector<int>>&ans){
+        if(root==NULL)
+            return;
+        arr.push_back(root->data);
         
-    vector<int>arr;
-    helper(root,arr,ans);
-    return ans;
+        if(root->left==NULL && root->right==NULL){
+            ans.push_back(arr);
+            return;
+        }
+        helper(root->left,arr,ans);
+        helper(root->right,arr,ans);
+    }
+
+    vector<vector<int>> Paths(Node* root)
+    {
+        vector<vector<int>>ans;
+        if(root==NULL)
+            return ans;
+            
+        vector<int>arr;
+        helper(root,arr,ans);
+        return ans;
+    }
+};
+
+
+//{ Driver Code Starts.
+
+int main(){
+    int t;
+    scanf("%d ",&t);
+    while(t--){
+        
+        Node* root = inputTree();
+        
+        Solution obj;
+        vector<vector<int>> res = obj.Paths(root);
+        
+        Matrix::print(res);
+        
+    }
 }
+
+// } Driver Code Ends
