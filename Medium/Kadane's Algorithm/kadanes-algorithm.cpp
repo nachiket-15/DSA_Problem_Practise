@@ -9,40 +9,32 @@ class Solution{
     // arr: input array
     // n: size of array
     //Function to find the sum of contiguous subarray with maximum sum.
+    long long maxSubarraySum(int a[], int n){
+        
+        // Your code here
+        long long maxh = 0, maxf = a[0];
+        
+        //Iterating over the array.
+        for(int i=0;i<n;i++) 
+            {
+                //Updating max sum till current index.
+                maxh+=a[i];
+                //Storing max sum so far by choosing maximum between max 
+                //sum so far and max till current index.
+                if(maxf<maxh)
+                maxf=maxh; 
+                
+                //If max sum at current index is negative, we do not need to add
+                //it to result so we update it to zero.
+                if(maxh<0)
+                    maxh=0;
     
-    long long maxSubarraySum(int arr[], int n){
-        /*
-        // Naive approach : Generate all subarrays and compare sums
-        long long maxi = -1e9;
-    
-        for(int i = 0; i < n; i++){
-            for(int j = i; j < n; j++){
-                vector<int> v;
-                for(int k = i; k <= j; k++){
-                    v.push_back(arr[k]);
-                }
-    
-                long long sum = accumulate(v.begin(), v.end(), 0);
-                if(sum > maxi) maxi = sum;
             }
-        }
-        return maxi;
-        */
+            //returning the result.
+            return maxf;
         
-        //Kadane algorithm:
-        
-        long long maxEndingHere=arr[0];
-        long long maxSoFar=arr[0];
-        
-        for(int i=1;i<n;i++){
-            maxEndingHere=max((long long) arr[i],maxEndingHere+arr[i]);
-            maxSoFar=max(maxEndingHere,maxSoFar);
-        }
-        
-        return maxSoFar;
     }
 };
-
 
 //{ Driver Code Starts.
 
