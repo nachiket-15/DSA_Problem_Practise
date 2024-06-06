@@ -15,6 +15,7 @@ class Solution {
         
         //Obv it is the largest odd no string
         int idx=-1;
+        
         for(int i=s.length()-1 ;i>=0;i--)
         {
             if((s[i]-'0')%2)
@@ -23,6 +24,7 @@ class Solution {
                 break;
             }
         }
+        
         string ans="";
         if(idx!=-1){
             ans=s.substr(0,idx+1);
@@ -31,6 +33,7 @@ class Solution {
         return ans;
     }
 };
+
 
 //{ Driver Code Starts.
 
