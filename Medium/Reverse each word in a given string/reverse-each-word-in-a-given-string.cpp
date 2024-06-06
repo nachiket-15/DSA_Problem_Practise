@@ -10,8 +10,11 @@ class Solution
     {
         //Very happy :)) Done on my own
         string ans;
+        
         stack<char>st;
-        for(int i=0;i<s.length();i++){
+        
+        for(int i=0;i<s.length();i++)
+        {
             char ch=s[i];
             if(isalpha(ch)||isdigit(ch)){
                 st.push(ch);
@@ -33,6 +36,7 @@ class Solution
         return ans;
     }
 };
+
 
 
 //{ Driver Code Starts.
