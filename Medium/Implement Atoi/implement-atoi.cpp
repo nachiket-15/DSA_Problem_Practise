@@ -33,6 +33,7 @@ class Solution{
 };
 
 
+
 //{ Driver Code Starts.
 int main()
 {
@@ -43,7 +44,8 @@ int main()
 		string s;
 		cin>>s;
 		Solution ob;
-		cout<<ob.atoi(s)<<endl;
+		int ans=ob.atoi(s);
+		cout<<ans<<endl;
 	}
 }
 // } Driver Code Ends
