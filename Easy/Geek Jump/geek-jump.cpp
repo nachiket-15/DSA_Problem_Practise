@@ -6,33 +6,32 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    int func(int index,vector<int>&heights,vector<int>&dp){
-        //If you have reached destination , return 0
-        if(index==0){
+    int f(int ind,vector<int>&height,vector<int>&dp)
+    {
+        //base case
+        if(ind==0)
+        {
             return 0;
         }
-        
-        if(dp[index]!=-1){
-            return dp[index];
+        if(dp[ind]!=-1)
+        {
+            return dp[ind];
         }
-        //When we take one step 
-        int oneStep=func(index-1,heights,dp)+abs(heights[index]-heights[index-1]);
-        //When we take two step (We are initially not sure if 
-        //we can take two stairs or not as there might be case 
-        //when we are just one step away from destination)
-        int twoStep=INT_MAX;
+        int jmpOne=f(ind-1,height,dp)+abs(height[ind]-height[ind-1]);
+        int jmpTwo=1e9;
         
-        if(index>1)
-            twoStep=func(index-2,heights,dp)+abs(heights[index]-heights[index-2]);
-    
-        return dp[index]=min(oneStep,twoStep);
+        if(ind>1)
+        {
+            jmpTwo=f(ind-2,height,dp)+abs(height[ind]-height[ind-2]);
+        }
+        
+        return dp[ind]=min(jmpOne,jmpTwo);
     }
-    int minimumEnergy(vector<int>& heights, int n) {
-        vector<int>dp(n+1,-1);
-        return func(n-1,heights,dp);
+    int minimumEnergy(vector<int>& height, int n) {
+        vector<int>dp(n,-1);
+        return f(n-1,height,dp);
     }
 };
-
 
 //{ Driver Code Starts.
 
