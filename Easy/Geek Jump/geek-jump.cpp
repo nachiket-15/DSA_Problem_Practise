@@ -28,8 +28,29 @@ class Solution {
         return dp[ind]=min(jmpOne,jmpTwo);
     }
     int minimumEnergy(vector<int>& height, int n) {
+        /* 
+        memoization approach
+        
         vector<int>dp(n,-1);
         return f(n-1,height,dp);
+        */
+        
+        vector<int>dp(n,0);
+        dp[0]=0;
+        
+        for(int ind=1;ind<n;ind++)
+        {
+            int jmpOne=dp[ind-1]+abs(height[ind]-height[ind-1]);
+            int jmpTwo=1e9;
+            
+            if(ind>1)
+            {
+                jmpTwo=dp[ind-2]+abs(height[ind]-height[ind-2]);
+            }
+            dp[ind]=min(jmpOne,jmpTwo);
+        }
+        
+        return dp[n-1];
     }
 };
 
