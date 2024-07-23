@@ -28,24 +28,32 @@ struct Node
 
 */
 
-class Solution {
-  public:
-    // Function to reverse a linked list.
-    struct Node* reverseList(struct Node* head) {
-        
-        Node*curr=head;
-        Node*prev=NULL;
-        
-        while(curr)
-        {
-            Node*temp=curr->next;
-            curr->next=prev;
-            prev=curr;
-            curr=temp;
+class Solution
+{
+    public:
+    //Function to reverse a linked list.
+    struct Node* reverseList(struct Node *head)
+    {
+        // Iterative Way - Done on OWN
+        Node* current = head;
+        Node *prev = NULL, *next = NULL;
+ 
+        while (current != NULL) {
+            // Store next
+            next = current->next;
+            // Reverse current node's pointer
+            current->next = prev;
+            // Move pointers one position ahead.
+            prev = current;
+            current = next;
         }
-        return prev;
+        head = prev;
+        return head;
     }
+    
 };
+    
+
 
 
 //{ Driver Code Starts.
