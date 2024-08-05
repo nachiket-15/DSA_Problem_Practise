@@ -120,13 +120,16 @@ class Solution {
                 q.push(make_pair(node->right,line+1));
             }
         }
+        
         for(auto it:m)
         {
             ans.push_back(it.second);
         }
+        
         return ans;
     }
 };
+
 
 
 
