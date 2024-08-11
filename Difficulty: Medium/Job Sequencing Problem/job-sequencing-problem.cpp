@@ -24,7 +24,7 @@ struct Job
 */
 
 //free function 
-bool comparision(Job a,Job b)
+    bool comparision(Job a,Job b)
     {
         return (a.profit>b.profit);
     }
@@ -42,11 +42,13 @@ class Solution
         
         //Find out maximum deadline for the given jobs
         int maxDeadline=0;
+        
         for(int i=0;i<n;i++)maxDeadline=max(maxDeadline,arr[i].dead);
         
         
         //Create a slots array to schedule jobs
         vector<int>slot(maxDeadline+1,-1);
+        
         int countJobs=0,maxProfit=0;
         
         
@@ -64,10 +66,11 @@ class Solution
             }
         }
         
-        vector<int>ans={countJobs,maxProfit};
-        return ans;
+        return {countJobs,maxProfit};
+         
     } 
 };
+
 
 
 
