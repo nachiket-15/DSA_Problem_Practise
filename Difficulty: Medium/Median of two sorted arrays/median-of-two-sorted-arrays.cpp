@@ -10,19 +10,49 @@ using namespace std;
 class Solution {
   public:
     int SumofMiddleElements(vector<int> &arr1, vector<int> &arr2) {
+        
         vector<int>v1;
-        for(int n:arr1)v1.push_back(n);
-        for(int n:arr2)v1.push_back(n);
+        // for(int n:arr1)v1.push_back(n);
+        // for(int n:arr2)v1.push_back(n);
+        // sort(v1.begin(),v1.end());
         
-        sort(v1.begin(),v1.end());
+        int n=arr1.size();
+        int m=arr2.size();
+        int i=0,j=0;
         
-        int size=v1.size();
+        while(i<n && j<m)
+        {
+            if(arr1[i]<arr2[j])
+            {
+                v1.push_back(arr1[i]);
+                i++;
+            }else{
+                v1.push_back(arr2[j]);
+                j++;
+            }
+        }
+        
+        while(i<n)
+        {
+            v1.push_back(arr1[i]);
+            i++;
+        }
+        
+        while(j<m)
+        {
+            v1.push_back(arr2[j]);
+            j++;
+        }
+        
+        int size=n+m;
+        
         if(size%2==0)
         {
             int idx=size/2;
             int prev=idx-1;
             return v1[idx]+v1[prev];
-        }else{
+        }
+        else{
             int idx=size/2;
             return v1[idx];
         }
