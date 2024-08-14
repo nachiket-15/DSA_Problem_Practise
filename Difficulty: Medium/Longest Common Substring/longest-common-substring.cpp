@@ -4,12 +4,11 @@ using namespace std;
 
 
 // } Driver Code Ends
-class Solution{
-    public:
-    
-    int longestCommonSubstr (string S1, string S2)
-    {
-        //dp array
+class Solution {
+  public:
+    int longestCommonSubstr(string S1, string S2) {
+        // your code here
+         //dp array
         int n=S1.length();
         int m=S2.length();
         
@@ -41,7 +40,6 @@ class Solution{
         return res;
     }
 };
-
 
 //{ Driver Code Starts.
 
